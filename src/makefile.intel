@@ -1,0 +1,60 @@
+CXX     = icpc
+LD      = icpc
+#CFLAGS  = -O3 -xcore-avx2 -O3 -fp-model=precise -openmp -std=c++11
+-opt-report=5
+CFLAGS  = -O3 -xcore-avx2 -O3 -openmp -std=c++11 -opt-report=5
+LDFLAGS = -openmp
+
+BIN0 = dynamic_scheduling_novec_haswell.x
+OBJ0 = dynamic_scheduling_novec_haswell.o
+BIN1 = dynamic_scheduling_vec_haswell.x
+OBJ1 = dynamic_scheduling_vec_haswell.o
+BIN2 = dynamic_scheduling_sm_haswell.x
+OBJ2 = dynamic_scheduling_sm_haswell.o
+BIN3 = dynamic_scheduling_dm_haswell.x
+OBJ3 = dynamic_scheduling_dm_haswell.o
+BIN4 = dynamic_scheduling_si_haswell.x
+OBJ4 = dynamic_scheduling_si_haswell.o
+BIN5 = dynamic_scheduling_di_haswell.x
+OBJ5 = dynamic_scheduling_di_haswell.o
+
+all : $(BIN0) $(BIN1) $(BIN2) $(BIN3) $(BIN4) $(BIN5)
+
+$(BIN0) : $(OBJ0)
+	$(LD) $(LDFLAGS) -o $(BIN0) $<
+
+$(BIN1) : $(OBJ1)
+	$(LD) $(LDFLAGS) -o $(BIN1) $<
+
+$(BIN2) : $(OBJ2)
+	$(LD) $(LDFLAGS) -o $(BIN2) $<
+
+$(BIN3) : $(OBJ3)
+	$(LD) $(LDFLAGS) -o $(BIN3) $<
+
+$(BIN4) : $(OBJ4)
+	$(LD) $(LDFLAGS) -o $(BIN4) $<
+
+$(BIN5) : $(OBJ5)
+	$(LD) $(LDFLAGS) -o $(BIN5) $<
+
+$(OBJ0) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -o $(OBJ0) -c $<
+
+$(OBJ1) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -o $(OBJ1) -c $<
+
+$(OBJ2) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -DSTATIC_MANUALVEC -o $(OBJ2) -c $<
+
+$(OBJ3) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -DDYNAMIC_MANUALVEC -o $(OBJ3) -c $<
+
+$(OBJ4) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -DSTATIC_INTRINSICS -o $(OBJ4) -c $<
+
+$(OBJ5) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -DDYNAMIC_INTRINSICS -o $(OBJ5) -c $<
+
+clean :
+	rm -f *.o *.optrpt $(BIN1) $(BIN2) $(BIN3) $(BIN4) $(BIN5)

@@ -1,0 +1,58 @@
+CXX     = icpc
+LD      = icpc
+CFLAGS  = -O3 -mmic -O3 -fp-model=precise -openmp -std=c++11 -opt-report=5
+LDFLAGS = -mmic -openmp
+
+BIN0 = dynamic_scheduling_novec_knc.x
+OBJ0 = dynamic_scheduling_novec_knc.o
+BIN1 = dynamic_scheduling_vec_knc.x
+OBJ1 = dynamic_scheduling_vec_knc.o
+BIN2 = dynamic_scheduling_sm_knc.x
+OBJ2 = dynamic_scheduling_sm_knc.o
+BIN3 = dynamic_scheduling_dm_knc.x
+OBJ3 = dynamic_scheduling_dm_knc.o
+BIN4 = dynamic_scheduling_si_knc.x
+OBJ4 = dynamic_scheduling_si_knc.o
+BIN5 = dynamic_scheduling_di_knc.x
+OBJ5 = dynamic_scheduling_di_knc.o
+
+all : $(BIN0) $(BIN1) $(BIN2) $(BIN3) $(BIN4) $(BIN5)
+
+$(BIN0) : $(OBJ0)
+	$(LD) $(LDFLAGS) -o $(BIN0) $<
+
+$(BIN1) : $(OBJ1)
+	$(LD) $(LDFLAGS) -o $(BIN1) $<
+
+$(BIN2) : $(OBJ2)
+	$(LD) $(LDFLAGS) -o $(BIN2) $<
+
+$(BIN3) : $(OBJ3)
+	$(LD) $(LDFLAGS) -o $(BIN3) $<
+
+$(BIN4) : $(OBJ4)
+	$(LD) $(LDFLAGS) -o $(BIN4) $<
+
+$(BIN5) : $(OBJ5)
+	$(LD) $(LDFLAGS) -o $(BIN5) $<
+
+$(OBJ0) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -o $(OBJ0) -c $<
+
+$(OBJ1) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -o $(OBJ1) -c $<
+
+$(OBJ2) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -DSTATIC_MANUALVEC -o $(OBJ2) -c $<
+
+$(OBJ3) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -DDYNAMIC_MANUALVEC -o $(OBJ3) -c $<
+
+$(OBJ4) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -DSTATIC_INTRINSICS -o $(OBJ4) -c $<
+
+$(OBJ5) : dynamic_scheduling.cpp
+	$(CXX) $(CFLAGS) -DVECTORIZE -DDYNAMIC_INTRINSICS -o $(OBJ5) -c $<
+
+clean :
+	rm -f *.o *.optrpt $(BIN1) $(BIN2) $(BIN3) $(BIN4) $(BIN5)
