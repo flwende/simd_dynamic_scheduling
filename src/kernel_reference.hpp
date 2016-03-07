@@ -1,3 +1,8 @@
+// Copyright (c) 2015 Florian Wende (flwende@gmail.com)
+//
+// Distributed under the BSD 2-clause Software License 
+// (See accompanying file LICENSE)
+
 #if defined(VECTORIZE)
 #pragma omp simd simdlen(VL)
 #endif

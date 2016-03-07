@@ -1,3 +1,8 @@
+// Copyright (c) 2015 Florian Wende (flwende@gmail.com)
+//
+// Distributed under the BSD 2-clause Software License 
+// (See accompanying file LICENSE)
+
   __MXXd vx1, vx2, vy, dtemp;
   __MXXi idx, k, kmax;
   __MMASK8 m0, m1, m2;

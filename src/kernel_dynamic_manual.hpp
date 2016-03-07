@@ -1,3 +1,8 @@
+// Copyright (c) 2015 Florian Wende (flwende@gmail.com)
+//
+// Distributed under the BSD 2-clause Software License 
+// (See accompanying file LICENSE)
+
   vec_int4_t lane_alife, lane_acquire_work, acquire_work;
   vec_int4_t idx, k, kmax;
   vec_real8_t vx1, vx2, vy, dtemp;

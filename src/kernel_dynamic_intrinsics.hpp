@@ -1,3 +1,8 @@
+// Copyright (c) 2015 Florian Wende (flwende@gmail.com)
+//
+// Distributed under the BSD 2-clause Software License 
+// (See accompanying file LICENSE)
+
   __MMASK8 lane_alife, lane_acquire_work, acquire_work;
   __MMASK8 m0, m1, m2;
   __MXXi idx, k, kmax;

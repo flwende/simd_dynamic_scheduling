@@ -1,3 +1,8 @@
+// Copyright (c) 2015 Florian Wende (flwende@gmail.com)
+//
+// Distributed under the BSD 2-clause Software License 
+// (See accompanying file LICENSE)
+
   vec_real8_t vx1, vx2, vy;
   vec_mask8_t m0;
   vec_int4_t k, kmax;
