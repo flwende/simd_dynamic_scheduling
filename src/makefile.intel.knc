@@ -1,20 +1,20 @@
 CXX     = icpc
 LD      = icpc
-CFLAGS  = -O3 -mmic -O3 -fp-model=precise -openmp -std=c++11 -opt-report=5
+CFLAGS  = -O3 -mmic -fp-model=precise -openmp -std=c++11 -opt-report=5
 LDFLAGS = -mmic -openmp
 
-BIN0 = dynamic_scheduling_novec_knc.x
-OBJ0 = dynamic_scheduling_novec_knc.o
-BIN1 = dynamic_scheduling_vec_knc.x
-OBJ1 = dynamic_scheduling_vec_knc.o
-BIN2 = dynamic_scheduling_sm_knc.x
-OBJ2 = dynamic_scheduling_sm_knc.o
-BIN3 = dynamic_scheduling_dm_knc.x
-OBJ3 = dynamic_scheduling_dm_knc.o
-BIN4 = dynamic_scheduling_si_knc.x
-OBJ4 = dynamic_scheduling_si_knc.o
-BIN5 = dynamic_scheduling_di_knc.x
-OBJ5 = dynamic_scheduling_di_knc.o
+BIN0 = dynamic_scheduling_novec.knc.x
+OBJ0 = dynamic_scheduling_novec.knc.o
+BIN1 = dynamic_scheduling_vec.knc.x
+OBJ1 = dynamic_scheduling_vec.knc.o
+BIN2 = dynamic_scheduling_sm.knc.x
+OBJ2 = dynamic_scheduling_sm.knc.o
+BIN3 = dynamic_scheduling_dm.knc.x
+OBJ3 = dynamic_scheduling_dm.knc.o
+BIN4 = dynamic_scheduling_si.knc.x
+OBJ4 = dynamic_scheduling_si.knc.o
+BIN5 = dynamic_scheduling_di.knc.x
+OBJ5 = dynamic_scheduling_di.knc.o
 
 all : $(BIN0) $(BIN1) $(BIN2) $(BIN3) $(BIN4) $(BIN5)
 

@@ -14,14 +14,14 @@
 #if defined(STATIC_INTRINSICS) || defined(DYNAMIC_INTRINSICS)
 #define VL (8)
 #else
-#define VL (8)
+#define VL (16)
 #endif
 #elif defined(__AVX2__)
-#define ALIGNMENT (32)
+#define ALIGNMENT (64)
 #if defined(STATIC_INTRINSICS) || defined(DYNAMIC_INTRINSICS)
 #define VL (4)
 #else
-#define VL (4)
+#define VL (8)
 #endif
 #else
 #error "Only platforms AVX(2), KNCNI (MIC) and later are supported"
@@ -105,6 +105,8 @@ typedef struct {
 
 #define SIMD_SQRT_REAL64(X) \
   _mm512_sqrt_pd(X)
+#define SIMD_LOG_REAL64(X) \
+  _mm512_log_pd(X)
 #define SIMD_MASK_SQRT_REAL64(X0,M,X1) \
   _mm512_mask_sqrt_pd(X0,M,X1)
 #define SIMD_MASK_LOG_REAL64(X0,M,X1) \
@@ -296,6 +298,8 @@ void mask_store_pd(double *addr, const __MMASK8 m, const __MXXd x) {
 
 #define SIMD_SQRT_REAL64(X) \
   _mm256_sqrt_pd(X)
+#define SIMD_LOG_REAL64(X) \
+  _mm256_log_pd(X)
 #define SIMD_MASK_SQRT_REAL64(X0,M,X1) \
   _mm256_blendv_pd(X0,_mm256_sqrt_pd(X1),M)
 #define SIMD_MASK_LOG_REAL64(X0,M,X1) \

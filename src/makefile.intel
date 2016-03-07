@@ -1,22 +1,20 @@
 CXX     = icpc
 LD      = icpc
-#CFLAGS  = -O3 -xcore-avx2 -O3 -fp-model=precise -openmp -std=c++11
--opt-report=5
-CFLAGS  = -O3 -xcore-avx2 -O3 -openmp -std=c++11 -opt-report=5
+CFLAGS  = -O3 -xcore-avx2 -fp-model=precise -openmp -std=c++11 -opt-report=5
 LDFLAGS = -openmp
 
-BIN0 = dynamic_scheduling_novec_haswell.x
-OBJ0 = dynamic_scheduling_novec_haswell.o
-BIN1 = dynamic_scheduling_vec_haswell.x
-OBJ1 = dynamic_scheduling_vec_haswell.o
-BIN2 = dynamic_scheduling_sm_haswell.x
-OBJ2 = dynamic_scheduling_sm_haswell.o
-BIN3 = dynamic_scheduling_dm_haswell.x
-OBJ3 = dynamic_scheduling_dm_haswell.o
-BIN4 = dynamic_scheduling_si_haswell.x
-OBJ4 = dynamic_scheduling_si_haswell.o
-BIN5 = dynamic_scheduling_di_haswell.x
-OBJ5 = dynamic_scheduling_di_haswell.o
+BIN0 = dynamic_scheduling_novec.x
+OBJ0 = dynamic_scheduling_novec.o
+BIN1 = dynamic_scheduling_vec.x
+OBJ1 = dynamic_scheduling_vec.o
+BIN2 = dynamic_scheduling_sm.x
+OBJ2 = dynamic_scheduling_sm.o
+BIN3 = dynamic_scheduling_dm.x
+OBJ3 = dynamic_scheduling_dm.o
+BIN4 = dynamic_scheduling_si.x
+OBJ4 = dynamic_scheduling_si.o
+BIN5 = dynamic_scheduling_di.x
+OBJ5 = dynamic_scheduling_di.o
 
 all : $(BIN0) $(BIN1) $(BIN2) $(BIN3) $(BIN4) $(BIN5)
 
